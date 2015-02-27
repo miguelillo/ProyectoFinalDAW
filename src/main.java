@@ -16,9 +16,9 @@ public class main {
         //PRUEBA LOGIN USUARIO
 
         String Mail = "miguel.navarrovera@gmail.com";
-        String password = "963922224";
+        String passwordLogin = "963922224";
         usuario.setMail(Mail);
-        usuario.setPassword(password);
+        usuario.setPassword(passwordLogin);
 
         Usuarios usuarioValido = usuarioBll.loginUsuario(usuario);
 
@@ -29,28 +29,29 @@ public class main {
         }
 
 //PRUEBA REGISTRO USUARIO
-//        String dni = "22595516V";
-//        String userName = "Hildegard";
-//        String mail = "miguel.navarrovera@gmail.com";
-//        String password = "963922224";
-//        String nombre = "Miguel Angel";
-//        String apellido1 = "Navarro";
-//        String apellido2 = "vera";
-//        Date fechaNacimiento = Date.valueOf("1987-06-01");
-//        String pais = "España";
-//
-//        String perfil = "A";
-//
-//        usuario.setDni(dni);
-//        usuario.setUserName(userName);
-//        usuario.setMail(mail);
-//        usuario.setPassword(password);
-//        usuario.setNombre(nombre);
-//        usuario.setApellido1(apellido1);
-//        usuario.setApellido2(apellido2);
-//        usuario.setPais(pais);
-//        usuario.setFechaNacimiento(fechaNacimiento);
-//        usuario.setPerfil(perfil);
+        String dni = "22595516V";
+        String userName = "Hildegard";
+        String mail = "miguel.navarrovera@gmail.com";
+        String password = "963922224";
+        String nombre = "Miguel Angel";
+        String apellido1 = "Navarro";
+        String apellido2 = "vera";
+        Date fechaNacimiento = Date.valueOf("1987-06-01");
+        String pais = "España";
+
+        String perfil = "A";
+
+        usuario.setDni(dni);
+        usuario.setUserName(userName);
+        usuario.setMail(mail);
+        usuario.setPassword(password);
+        usuario.setNombre(nombre);
+        usuario.setApellido1(apellido1);
+        usuario.setApellido2(apellido2);
+        usuario.setPais(pais);
+        usuario.setFechaNacimiento(fechaNacimiento);
+        usuario.setPerfil(perfil);
+        
         usuarioBll.RegistrarUsuario(usuario);
 
     }

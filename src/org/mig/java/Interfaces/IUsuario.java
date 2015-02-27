@@ -16,8 +16,6 @@ public interface IUsuario {
 
     public Usuarios LoginUsuario(Usuarios usuario) throws DAOException;
 
-    public void ValidarUsuario(Usuarios usuario) throws DAOException;
-
     public void RegistrarUsuario(Usuarios usuario) throws DAOException;
 
 }

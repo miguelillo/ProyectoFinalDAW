@@ -1,12 +1,9 @@
 package org.mig.java.DAO;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.UnmarshallerImpl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static org.mig.java.DAO.DAOUtil.prepareStatement;
 import static org.mig.java.DAO.DAOUtil.toSqlDate;
 import org.mig.java.Entities.Usuarios;
@@ -52,6 +49,11 @@ public class DAOUsuario implements IUsuario {
 
     private static final String LOGIN_USUARIO = "SELECT * FROM USUARIOS WHERE MAIL = ? AND PASSWORD = ?";
 
+    /**
+     *
+     * @param usuario DAO PARA REGISTRAR A UN USUARIO EN LA BASE DE DATOS.
+     * @throws DAOException
+     */
     @Override
     public void RegistrarUsuario(Usuarios usuario) throws DAOException {
 
@@ -79,13 +81,8 @@ public class DAOUsuario implements IUsuario {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DAOException("UPS! Ocurrio un error al registrarte!");
         }
-    }
-
-    @Override
-    public void ValidarUsuario(Usuarios usuario) throws DAOException {
-
     }
 
     @Override
@@ -106,7 +103,7 @@ public class DAOUsuario implements IUsuario {
             }
 
         } catch (SQLException ex) {
-            throw new DAOException(ex);
+            throw new DAOException("Error al intentar Logearte!");
         }
 
         return usuarioValido;

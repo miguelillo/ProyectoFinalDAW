@@ -34,7 +34,7 @@ public abstract class DAOFactory {
             Class.forName(driverClassName);
         } catch (ClassNotFoundException e) {
             throw new DAOException(
-                    "El driver '" + driverClassName + "' no se encuentra en la ruta especificada.", e);
+                    "El driver '" + driverClassName + "' no se encuentra en la ruta especificada.");
         }
         instance = new DriverManagerDAOFactory(url, username, password);
 
