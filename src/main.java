@@ -2,6 +2,7 @@
 import java.sql.Date;
 import org.mig.java.BLL.UsuarioBLL;
 import org.mig.java.Entities.Usuarios;
+import org.japo.java.entities.Nif;
 
 /**
  *
@@ -11,10 +12,13 @@ public class main {
 
     public static void main(String[] args) {
 
+        //objeto validador dnis
+        Nif nifValidator = new Nif();
+
         UsuarioBLL usuarioBll = new UsuarioBLL();
         Usuarios usuario = new Usuarios();
-        //PRUEBA LOGIN USUARIO
 
+//PRUEBA LOGIN USUARIO
         String Mail = "miguel.navarrovera@gmail.com";
         String passwordLogin = "963922224";
         usuario.setMail(Mail);
@@ -29,19 +33,28 @@ public class main {
         }
 
 //PRUEBA REGISTRO USUARIO
-        String dni = "22595516V";
-        String userName = "Hildegard";
-        String mail = "miguel.navarrovera@gmail.com";
+        String nif = "88888888T";
+        
+
+        
+
+        String userName = "pili86";
+        String mail = "pilarcontreras85@hotmail.com";
         String password = "963922224";
         String nombre = "Miguel Angel";
         String apellido1 = "Navarro";
         String apellido2 = "vera";
         Date fechaNacimiento = Date.valueOf("1987-06-01");
         String pais = "España";
+        String perfil = "V";
 
-        String perfil = "A";
-
-        usuario.setDni(dni);
+        //validar dni
+        //nifValidator.validarNif(dni, letra);
+        
+        
+        
+        
+        //usuario.setDni(dni);
         usuario.setUserName(userName);
         usuario.setMail(mail);
         usuario.setPassword(password);
@@ -51,7 +64,7 @@ public class main {
         usuario.setPais(pais);
         usuario.setFechaNacimiento(fechaNacimiento);
         usuario.setPerfil(perfil);
-        
+
         usuarioBll.RegistrarUsuario(usuario);
 
     }
