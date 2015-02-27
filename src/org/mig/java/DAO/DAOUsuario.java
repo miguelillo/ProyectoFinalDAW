@@ -2,6 +2,7 @@ package org.mig.java.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,6 +49,8 @@ public class DAOUsuario implements IUsuario {
             + "`Perfil`) \n"
             + "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+    private static final String LOGIN_USUARIO = "SELECT * FROM USUARIOS WHERE MAIL = ? AND PASSWORD = ?";
+
     @Override
     public void RegistrarUsuario(Usuarios usuario) throws DAOException {
 
@@ -86,7 +89,44 @@ public class DAOUsuario implements IUsuario {
 
     @Override
     public Usuarios LoginUsuario(Usuarios usuario) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Usuarios usuarioValido = null;
+
+        Object[] values = {
+            usuario.getMail(),
+            usuario.getPassword(),};
+
+        try {
+            PreparedStatement pstmt = prepareStatement(null, LOGIN_USUARIO, values);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                usuarioValido = obtenerFilaUsuario(rs);
+            }
+
+        } catch (SQLException ex) {
+            throw new DAOException(ex);
+        }
+
+        return usuarioValido;
     }
 
+    private Usuarios obtenerFilaUsuario(ResultSet rs) throws SQLException {
+        Usuarios filaUsuario = new Usuarios();
+
+        filaUsuario.setDni(rs.getString("DNI"));
+        filaUsuario.setUserName(rs.getString("USER_NAME"));
+        filaUsuario.setMail(rs.getString("MAIL"));
+        filaUsuario.setNombre(rs.getString("NOMBRE"));
+        filaUsuario.setPassword(rs.getString("PASSWORD"));
+        filaUsuario.setApellido2(rs.getString("APELLIDO1"));
+        filaUsuario.setApellido1(rs.getString("APELLIDO2"));
+        filaUsuario.setFechaNacimiento(rs.getDate("FECHA_NACIMIENTO"));
+
+        filaUsuario.setPais(rs.getString("PAIS"));
+        filaUsuario.setImagenUrl(rs.getString("IMAGEN_URL"));
+        filaUsuario.setPerfil(rs.getString("PERFIL"));
+
+        return filaUsuario;
+
+    }
 }
