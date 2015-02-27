@@ -1,5 +1,6 @@
 package org.mig.java.DAO;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.UnmarshallerImpl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -96,7 +97,8 @@ public class DAOUsuario implements IUsuario {
             usuario.getPassword(),};
 
         try {
-            PreparedStatement pstmt = prepareStatement(null, LOGIN_USUARIO, values);
+            Connection connection = daoFactory.getConnection();
+            PreparedStatement pstmt = prepareStatement(connection, LOGIN_USUARIO, values);
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {

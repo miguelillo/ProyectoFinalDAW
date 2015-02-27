@@ -18,4 +18,10 @@ public class UsuarioBLL {
         daoUsuario.RegistrarUsuario(usuario);
     }
 
+    public Usuarios loginUsuario(Usuarios usuario) {
+        DAOFactory factory = DAOFactory.getInstance();
+        IUsuario daoUsuario = factory.getUsuarioDAO();
+
+        return daoUsuario.LoginUsuario(usuario);
+    }
 }
