@@ -23,6 +23,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "CodPostal.findAll", query = "SELECT c FROM CodPostal c")})
 public class CodPostal implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -68,5 +69,5 @@ public class CodPostal implements Serializable {
     public String toString() {
         return "org.mig.java.Entities.CodPostal[ codPostal=" + codPostal + " ]";
     }
-    
+
 }

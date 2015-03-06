@@ -29,6 +29,8 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Tiendas.findAll", query = "SELECT t FROM Tiendas t")})
 public class Tiendas implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tiendas")
+    private Collection<DireccionesTiendas> direccionesTiendasCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -132,6 +134,14 @@ public class Tiendas implements Serializable {
     @Override
     public String toString() {
         return "org.mig.java.Entities.Tiendas[ cif=" + cif + " ]";
+    }
+
+    public Collection<DireccionesTiendas> getDireccionesTiendasCollection() {
+        return direccionesTiendasCollection;
+    }
+
+    public void setDireccionesTiendasCollection(Collection<DireccionesTiendas> direccionesTiendasCollection) {
+        this.direccionesTiendasCollection = direccionesTiendasCollection;
     }
     
 }

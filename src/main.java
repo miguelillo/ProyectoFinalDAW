@@ -34,9 +34,6 @@ public class main {
 
 //PRUEBA REGISTRO USUARIO
         String nif = "88888888T";
-        
-
-        
 
         String userName = "pili86";
         String mail = "pilarcontreras85@hotmail.com";
@@ -50,10 +47,6 @@ public class main {
 
         //validar dni
         //nifValidator.validarNif(dni, letra);
-        
-        
-        
-        
         //usuario.setDni(dni);
         usuario.setUserName(userName);
         usuario.setMail(mail);

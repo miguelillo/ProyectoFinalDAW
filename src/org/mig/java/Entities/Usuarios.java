@@ -6,13 +6,16 @@
 package org.mig.java.Entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,6 +29,8 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u")})
 public class Usuarios implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioMail")
+    private Collection<Tiendas> tiendasCollection;
     private static final long serialVersionUID = 1L;
     @Column(name = "DNI")
     private String dni;
@@ -191,6 +196,14 @@ public class Usuarios implements Serializable {
     @Override
     public String toString() {
         return "org.mig.java.Entities.Usuarios[ mail=" + mail + " ]";
+    }
+
+    public Collection<Tiendas> getTiendasCollection() {
+        return tiendasCollection;
+    }
+
+    public void setTiendasCollection(Collection<Tiendas> tiendasCollection) {
+        this.tiendasCollection = tiendasCollection;
     }
     
 }
