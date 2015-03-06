@@ -7,7 +7,7 @@ import org.mig.java.Entities.Tiendas;
  *
  * @author miguelangel
  */
-public interface ITienda {
+public interface ITiendas {
     
     public void RegistrarTienda(Tiendas tienda);
     
