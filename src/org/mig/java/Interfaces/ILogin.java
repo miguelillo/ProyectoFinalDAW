@@ -10,5 +10,5 @@ package org.mig.java.Interfaces;
  * @author miguelangel
  */
 public interface ILogin {
-    
+    sout    
 }
