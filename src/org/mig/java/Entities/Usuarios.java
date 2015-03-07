@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Este codigo pertenece a miguel.navarrovera@gmail.com
+ * Su uso esta prohibido para uso comercial.
+ * Si tienes interes en usarlo, ponte en contacto conmigo, Gracias. :D
  */
 package org.mig.java.Entities;
 
@@ -16,12 +16,12 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
  * @author miguelangel
  */
 @Entity
@@ -29,8 +29,7 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u")})
 public class Usuarios implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioMail")
-    private Collection<Tiendas> tiendasCollection;
+
     private static final long serialVersionUID = 1L;
     @Column(name = "DNI")
     private String dni;
@@ -65,6 +64,15 @@ public class Usuarios implements Serializable {
     @Basic(optional = false)
     @Column(name = "Perfil")
     private String perfil;
+    @Basic(optional = false)
+    @Column(name = "Sexo")
+    private String sexo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
+    private Collection<Direcciones> direccionesCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioMail")
+    private Collection<Tiendas> tiendasCollection;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuarios")
+    private Telefonos telefonos;
 
     public Usuarios() {
     }
@@ -73,7 +81,7 @@ public class Usuarios implements Serializable {
         this.mail = mail;
     }
 
-    public Usuarios(String mail, String userName, String nombre, String password, String apellido2, String apellido1, Date fechaNacimiento, String pais, String perfil) {
+    public Usuarios(String mail, String userName, String nombre, String password, String apellido2, String apellido1, Date fechaNacimiento, String pais, String perfil, String sexo) {
         this.mail = mail;
         this.userName = userName;
         this.nombre = nombre;
@@ -83,6 +91,7 @@ public class Usuarios implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
         this.pais = pais;
         this.perfil = perfil;
+        this.sexo = sexo;
     }
 
     public String getDni() {
@@ -173,6 +182,38 @@ public class Usuarios implements Serializable {
         this.perfil = perfil;
     }
 
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public Collection<Direcciones> getDireccionesCollection() {
+        return direccionesCollection;
+    }
+
+    public void setDireccionesCollection(Collection<Direcciones> direccionesCollection) {
+        this.direccionesCollection = direccionesCollection;
+    }
+
+    public Collection<Tiendas> getTiendasCollection() {
+        return tiendasCollection;
+    }
+
+    public void setTiendasCollection(Collection<Tiendas> tiendasCollection) {
+        this.tiendasCollection = tiendasCollection;
+    }
+
+    public Telefonos getTelefonos() {
+        return telefonos;
+    }
+
+    public void setTelefonos(Telefonos telefonos) {
+        this.telefonos = telefonos;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -198,12 +239,4 @@ public class Usuarios implements Serializable {
         return "org.mig.java.Entities.Usuarios[ mail=" + mail + " ]";
     }
 
-    public Collection<Tiendas> getTiendasCollection() {
-        return tiendasCollection;
-    }
-
-    public void setTiendasCollection(Collection<Tiendas> tiendasCollection) {
-        this.tiendasCollection = tiendasCollection;
-    }
-    
 }

@@ -1,9 +1,14 @@
+/*
+ * Este codigo pertenece a miguel.navarrovera@gmail.com
+ * Su uso esta prohibido para uso comercial.
+ * Si tienes interes en usarlo, ponte en contacto conmigo, Gracias. :D
+ */
+
 package org.mig.java.Entities;
 
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,11 +17,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- *
  * @author miguelangel
  */
 @Entity
@@ -52,8 +55,6 @@ public class Productos implements Serializable {
         @JoinColumn(name = "TiendaCIF", referencedColumnName = "CIF")})
     @ManyToMany
     private Collection<Tiendas> tiendasCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productos")
-    private Collection<Pedidos> pedidosCollection;
 
     public Productos() {
     }
@@ -142,14 +143,6 @@ public class Productos implements Serializable {
         this.tiendasCollection = tiendasCollection;
     }
 
-    public Collection<Pedidos> getPedidosCollection() {
-        return pedidosCollection;
-    }
-
-    public void setPedidosCollection(Collection<Pedidos> pedidosCollection) {
-        this.pedidosCollection = pedidosCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -174,5 +167,5 @@ public class Productos implements Serializable {
     public String toString() {
         return "org.mig.java.Entities.Productos[ referencia=" + referencia + " ]";
     }
-    
+
 }

@@ -1,8 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Este codigo pertenece a miguel.navarrovera@gmail.com
+ * Su uso esta prohibido para uso comercial.
+ * Si tienes interes en usarlo, ponte en contacto conmigo, Gracias. :D
  */
+
 package org.mig.java.Entities;
 
 import java.io.Serializable;
@@ -11,7 +12,6 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
- *
  * @author miguelangel
  */
 @Embeddable
@@ -75,5 +75,5 @@ public class DireccionesPK implements Serializable {
     public String toString() {
         return "org.mig.java.Entities.DireccionesPK[ usuarioMail=" + usuarioMail + ", direccion=" + direccion + " ]";
     }
-    
+
 }

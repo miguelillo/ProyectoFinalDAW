@@ -1,8 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Este codigo pertenece a miguel.navarrovera@gmail.com
+ * Su uso esta prohibido para uso comercial.
+ * Si tienes interes en usarlo, ponte en contacto conmigo, Gracias. :D
  */
+
 package org.mig.java.Entities;
 
 import java.io.Serializable;
@@ -15,7 +16,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
- *
  * @author miguelangel
  */
 @Entity
@@ -68,5 +68,5 @@ public class Poblaciones implements Serializable {
     public String toString() {
         return "org.mig.java.Entities.Poblaciones[ poblacion=" + poblacion + " ]";
     }
-    
+
 }

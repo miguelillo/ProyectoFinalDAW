@@ -1,14 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Este codigo pertenece a miguel.navarrovera@gmail.com
+ * Su uso esta prohibido para uso comercial.
+ * Si tienes interes en usarlo, ponte en contacto conmigo, Gracias. :D
  */
+
 package org.mig.java.Entities;
 
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,11 +17,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- *
  * @author miguelangel
  */
 @Entity
@@ -29,8 +27,6 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Tiendas.findAll", query = "SELECT t FROM Tiendas t")})
 public class Tiendas implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tiendas")
-    private Collection<DireccionesTiendas> direccionesTiendasCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -39,16 +35,11 @@ public class Tiendas implements Serializable {
     @Basic(optional = false)
     @Column(name = "Nombre")
     private String nombre;
-    @Basic(optional = false)
-    @Column(name = "Direccion")
-    private String direccion;
     @ManyToMany(mappedBy = "tiendasCollection")
     private Collection<Productos> productosCollection;
     @JoinColumn(name = "UsuarioMail", referencedColumnName = "Mail")
     @ManyToOne(optional = false)
-    private Usuarios usuarios;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tiendas")
-    private Collection<Pedidos> pedidosCollection;
+    private Usuarios usuarioMail;
 
     public Tiendas() {
     }
@@ -57,10 +48,9 @@ public class Tiendas implements Serializable {
         this.cif = cif;
     }
 
-    public Tiendas(String cif, String nombre, String direccion) {
+    public Tiendas(String cif, String nombre) {
         this.cif = cif;
         this.nombre = nombre;
-        this.direccion = direccion;
     }
 
     public String getCif() {
@@ -79,14 +69,6 @@ public class Tiendas implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
     public Collection<Productos> getProductosCollection() {
         return productosCollection;
     }
@@ -95,20 +77,12 @@ public class Tiendas implements Serializable {
         this.productosCollection = productosCollection;
     }
 
-    public Usuarios getUsuarios() {
-        return usuarios;
+    public Usuarios getUsuarioMail() {
+        return usuarioMail;
     }
 
-    public void setUsuarios(Usuarios usuarios) {
-        this.usuarios = usuarios;
-    }
-
-    public Collection<Pedidos> getPedidosCollection() {
-        return pedidosCollection;
-    }
-
-    public void setPedidosCollection(Collection<Pedidos> pedidosCollection) {
-        this.pedidosCollection = pedidosCollection;
+    public void setUsuarioMail(Usuarios usuarioMail) {
+        this.usuarioMail = usuarioMail;
     }
 
     @Override
@@ -136,12 +110,4 @@ public class Tiendas implements Serializable {
         return "org.mig.java.Entities.Tiendas[ cif=" + cif + " ]";
     }
 
-    public Collection<DireccionesTiendas> getDireccionesTiendasCollection() {
-        return direccionesTiendasCollection;
-    }
-
-    public void setDireccionesTiendasCollection(Collection<DireccionesTiendas> direccionesTiendasCollection) {
-        this.direccionesTiendasCollection = direccionesTiendasCollection;
-    }
-    
 }
