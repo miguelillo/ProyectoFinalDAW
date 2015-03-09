@@ -2,6 +2,7 @@ package org.mig.java.Interfaces;
 
 import org.mig.java.Entities.Productos;
 import org.mig.java.Entities.Tiendas;
+import org.mig.java.Entities.Usuarios;
 
 /**
  *
@@ -9,7 +10,7 @@ import org.mig.java.Entities.Tiendas;
  */
 public interface ITiendas {
     
-    public void RegistrarTienda(Tiendas tienda);
+    public void RegistrarTienda(Tiendas tienda, Usuarios usuario);
     
     public void BorrarTienda(Tiendas tienda);
     

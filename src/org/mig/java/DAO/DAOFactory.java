@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 import org.mig.java.Exceptions.DAOException;
+import org.mig.java.Interfaces.ITiendas;
 import org.mig.java.Interfaces.IUsuario;
 
 public abstract class DAOFactory {
@@ -58,6 +59,10 @@ public abstract class DAOFactory {
      */
     public IUsuario getUsuarioDAO() {
         return new DAOUsuario(this);
+    }
+
+    public ITiendas getTiendasDAO() {
+        return new DAOTiendas(this);
     }
 
     // You can add more DAO implementation getters here.

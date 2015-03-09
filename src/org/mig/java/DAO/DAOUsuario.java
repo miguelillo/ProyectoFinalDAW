@@ -43,9 +43,11 @@ public class DAOUsuario implements IUsuario {
             + "`Apellido2`, "
             + "`Apellido1`, "
             + "`Fecha_Nacimiento`, "
-            + "`Pais`, imagen_url, "
-            + "`Perfil`) \n"
-            + "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            + "`Pais`, "
+            + "imagen_url, "
+            + "`Perfil`,"
+            + "`sexo`)"
+            + "	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private static final String LOGIN_USUARIO = "SELECT * FROM USUARIOS WHERE MAIL = ? AND PASSWORD = ?";
 
@@ -69,7 +71,8 @@ public class DAOUsuario implements IUsuario {
             toSqlDate(usuario.getFechaNacimiento()),
             usuario.getPais(),
             usuario.getImagenUrl(),
-            usuario.getPerfil(),};
+            usuario.getPerfil(),
+            usuario.getSexo()};
 
         try {
             Connection connection = daoFactory.getConnection();
@@ -120,10 +123,10 @@ public class DAOUsuario implements IUsuario {
         filaUsuario.setApellido2(rs.getString("APELLIDO1"));
         filaUsuario.setApellido1(rs.getString("APELLIDO2"));
         filaUsuario.setFechaNacimiento(rs.getDate("FECHA_NACIMIENTO"));
-
         filaUsuario.setPais(rs.getString("PAIS"));
         filaUsuario.setImagenUrl(rs.getString("IMAGEN_URL"));
         filaUsuario.setPerfil(rs.getString("PERFIL"));
+        filaUsuario.setSexo(rs.getString("SEXO"));
 
         return filaUsuario;
 
