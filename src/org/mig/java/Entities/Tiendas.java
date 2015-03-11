@@ -22,23 +22,12 @@ import javax.persistence.Table;
 /**
  * @author miguelangel
  */
-@Entity
-@Table(name = "tiendas")
-@NamedQueries({
-    @NamedQuery(name = "Tiendas.findAll", query = "SELECT t FROM Tiendas t")})
+
 public class Tiendas implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "CIF")
+   
     private String cif;
-    @Basic(optional = false)
-    @Column(name = "Nombre")
     private String nombre;
-    @ManyToMany(mappedBy = "tiendasCollection")
     private Collection<Productos> productosCollection;
-    @JoinColumn(name = "UsuarioMail", referencedColumnName = "Mail")
-    @ManyToOne(optional = false)
     private Usuarios usuarioMail;
 
     public Tiendas() {
@@ -83,31 +72,6 @@ public class Tiendas implements Serializable {
 
     public void setUsuarioMail(Usuarios usuarioMail) {
         this.usuarioMail = usuarioMail;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (cif != null ? cif.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Tiendas)) {
-            return false;
-        }
-        Tiendas other = (Tiendas) object;
-        if ((this.cif == null && other.cif != null) || (this.cif != null && !this.cif.equals(other.cif))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.mig.java.Entities.Tiendas[ cif=" + cif + " ]";
     }
 
 }
