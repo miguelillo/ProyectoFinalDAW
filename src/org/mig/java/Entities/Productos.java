@@ -22,39 +22,17 @@ import javax.persistence.Table;
 /**
  * @author miguelangel
  */
-@Entity
-@Table(name = "productos")
-@NamedQueries({
-    @NamedQuery(name = "Productos.findAll", query = "SELECT p FROM Productos p")})
+
 public class Productos implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "Referencia")
+  
     private String referencia;
-    @Basic(optional = false)
-    @Column(name = "Precio")
     private int precio;
-    @Basic(optional = false)
-    @Column(name = "Nombre")
     private String nombre;
-    @Basic(optional = false)
-    @Column(name = "Descripcion")
     private String descripcion;
-    @Column(name = "Color")
     private String color;
-    @Column(name = "Talla")
     private String talla;
-    @Column(name = "Composicion")
     private String composicion;
-    @Basic(optional = false)
-    @Column(name = "Categoria")
     private String categoria;
-    @JoinTable(name = "productos_tiendas", joinColumns = {
-        @JoinColumn(name = "Productoid", referencedColumnName = "Referencia")}, inverseJoinColumns = {
-        @JoinColumn(name = "TiendaCIF", referencedColumnName = "CIF")})
-    @ManyToMany
-    private Collection<Tiendas> tiendasCollection;
 
     public Productos() {
     }
@@ -142,30 +120,4 @@ public class Productos implements Serializable {
     public void setTiendasCollection(Collection<Tiendas> tiendasCollection) {
         this.tiendasCollection = tiendasCollection;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (referencia != null ? referencia.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Productos)) {
-            return false;
-        }
-        Productos other = (Productos) object;
-        if ((this.referencia == null && other.referencia != null) || (this.referencia != null && !this.referencia.equals(other.referencia))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.mig.java.Entities.Productos[ referencia=" + referencia + " ]";
-    }
-
 }
