@@ -20,30 +20,15 @@ import javax.persistence.Table;
 /**
  * @author miguelangel
  */
-@Entity
-@Table(name = "direcciones")
-@NamedQueries({
-    @NamedQuery(name = "Direcciones.findAll", query = "SELECT d FROM Direcciones d")})
 public class Direcciones implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @EmbeddedId
+    
+    
     protected DireccionesPK direccionesPK;
-    @Basic(optional = false)
-    @Column(name = "Numero")
     private int numero;
-    @Basic(optional = false)
-    @Column(name = "Puerta")
     private int puerta;
-    @Column(name = "Escalera")
     private Integer escalera;
-    @Basic(optional = false)
-    @Column(name = "Poblacion")
     private String poblacion;
-    @Basic(optional = false)
-    @Column(name = "Cod_Postal")
     private int codPostal;
-    @JoinColumn(name = "UsuarioMail", referencedColumnName = "Mail", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
     private Usuarios usuarios;
 
     public Direcciones() {
@@ -120,30 +105,4 @@ public class Direcciones implements Serializable {
     public void setUsuarios(Usuarios usuarios) {
         this.usuarios = usuarios;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (direccionesPK != null ? direccionesPK.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Direcciones)) {
-            return false;
-        }
-        Direcciones other = (Direcciones) object;
-        if ((this.direccionesPK == null && other.direccionesPK != null) || (this.direccionesPK != null && !this.direccionesPK.equals(other.direccionesPK))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.mig.java.Entities.Direcciones[ direccionesPK=" + direccionesPK + " ]";
-    }
-
 }
