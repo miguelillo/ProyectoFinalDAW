@@ -21,47 +21,21 @@ import javax.persistence.TemporalType;
 /**
  * @author miguelangel
  */
-@Entity
-@Table(name = "usuarios")
-@NamedQueries({
-    @NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u")})
+
 public class Usuarios implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Column(name = "DNI")
+   
     private String dni;
-    @Basic(optional = false)
-    @Column(name = "User_Name")
+ 
     private String userName;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "Mail")
     private String mail;
-    @Basic(optional = false)
-    @Column(name = "Nombre")
     private String nombre;
-    @Basic(optional = false)
-    @Column(name = "Password")
     private String password;
-    @Basic(optional = false)
-    @Column(name = "Apellido2")
     private String apellido2;
-    @Basic(optional = false)
-    @Column(name = "Apellido1")
     private String apellido1;
-    @Basic(optional = false)
-    @Column(name = "Fecha_Nacimiento")
-    @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
-    @Basic(optional = false)
-    @Column(name = "Pais")
     private String pais;
-    @Column(name = "imagen_url")
     private String imagenUrl;
-    @Basic(optional = false)
-    @Column(name = "Perfil")
     private String perfil;
-    @Basic(optional = false)
-    @Column(name = "Sexo")
     private String sexo;
 
     public Usuarios() {
@@ -178,31 +152,6 @@ public class Usuarios implements Serializable {
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (mail != null ? mail.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Usuarios)) {
-            return false;
-        }
-        Usuarios other = (Usuarios) object;
-        if ((this.mail == null && other.mail != null) || (this.mail != null && !this.mail.equals(other.mail))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.mig.java.Entities.Usuarios[ mail=" + mail + " ]";
     }
 
 }
