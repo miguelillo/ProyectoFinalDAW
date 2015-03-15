@@ -6,9 +6,11 @@ import java.sql.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.mig.java.BLL.ProductosBLL;
 import org.mig.java.BLL.UsuarioBLL;
 import org.mig.java.Entities.Usuarios;
 import org.mig.java.BLL.TiendasBLL;
+import org.mig.java.Entities.Productos;
 import org.mig.java.Entities.Tiendas;
 
 /**
@@ -110,18 +112,40 @@ public class main {
     }
 
     private static void insertarProductoTienda() {
+        ProductosBLL productoBll = new ProductosBLL();
         Usuarios loginValido = LoginUsuario();
         TiendasBLL tiendaBll = new TiendasBLL();
         Tiendas tienda = new Tiendas();
+        Productos producto = new Productos();
         List<Tiendas> listadoTiendas = tiendaBll.propietarioTienda(loginValido);
+
+        String referencia = "4";
+        int precio = 13;
+        String productoNombre = "Bragas";
+        String descripcion = "Bragas Beis";
+        String color = "Azul";
+        String talla = "XL";
+        String composicion = "Algodon";
+        String categoria = "EntrePierna";
+
+        producto.setReferencia(referencia);
+        producto.setNombre(productoNombre);
+        producto.setPrecio(precio);
+        producto.setDescripcion(descripcion);
+        producto.setColor(color);
+        producto.setTalla(talla);
+        producto.setComposicion(composicion);
+        producto.setCategoria(categoria);
 
         if (loginValido != null) {
 
-            for (int i = 0; i < listadoTiendas.size(); i++) {
-                tienda = (Tiendas) listadoTiendas.get(i);
+            for (Tiendas listadoTienda : listadoTiendas) {
+                tienda = (Tiendas) listadoTienda;
                 System.out.println("El usuario" + loginValido.getUserName() + " es propietario de " + tienda.getNombre());
             }
 
+            productoBll.insertarProducto(producto, tienda);
+            System.out.println("Producto : " + producto.getNombre() + " introducido en " + tienda.getNombre());
         }
 
     }
