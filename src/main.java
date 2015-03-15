@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.mig.java.BLL.UsuarioBLL;
@@ -19,11 +20,12 @@ public class main {
     public static void main(String[] args) {
 
         //LOGIN USUARIO
-        //LoginUsuario();
+        LoginUsuario();
+        insertarProductoTienda();
         //REGISTRO USUARIO
-        // RegistrarUsuario();
+        //RegistrarUsuario();
         //REGISTRAR TIENDA
-        RegistrarTienda();
+        //RegistrarTienda();
     }
 
     private static void RegistrarTienda() {
@@ -105,5 +107,22 @@ public class main {
         }
 
         return usuarioValido;
+    }
+
+    private static void insertarProductoTienda() {
+        Usuarios loginValido = LoginUsuario();
+        TiendasBLL tiendaBll = new TiendasBLL();
+        Tiendas tienda = new Tiendas();
+        List<Tiendas> listadoTiendas = tiendaBll.propietarioTienda(loginValido);
+
+        if (loginValido != null) {
+
+            for (int i = 0; i < listadoTiendas.size(); i++) {
+                tienda = (Tiendas) listadoTiendas.get(i);
+                System.out.println("El usuario" + loginValido.getUserName() + " es propietario de " + tienda.getNombre());
+            }
+
+        }
+
     }
 }

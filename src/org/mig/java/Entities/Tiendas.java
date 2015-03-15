@@ -3,7 +3,6 @@
  * Su uso esta prohibido para uso comercial.
  * Si tienes interes en usarlo, ponte en contacto conmigo, Gracias. :D
  */
-
 package org.mig.java.Entities;
 
 import java.io.Serializable;
@@ -12,12 +11,10 @@ import java.util.Collection;
 /**
  * @author miguelangel
  */
-
 public class Tiendas implements Serializable {
-   
+
     private String cif;
     private String nombre;
-    private Collection<Productos> productosCollection;
     private Usuarios usuarioMail;
 
     public Tiendas() {
@@ -46,14 +43,6 @@ public class Tiendas implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public Collection<Productos> getProductosCollection() {
-        return productosCollection;
-    }
-
-    public void setProductosCollection(Collection<Productos> productosCollection) {
-        this.productosCollection = productosCollection;
     }
 
     public Usuarios getUsuarioMail() {

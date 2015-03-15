@@ -7,9 +7,13 @@ package org.mig.java.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static org.mig.java.DAO.DAOUtil.prepareStatement;
-import static org.mig.java.DAO.DAOUtil.toSqlDate;
 import org.mig.java.Entities.Productos;
 import org.mig.java.Entities.Tiendas;
 import org.mig.java.Entities.Usuarios;
@@ -37,6 +41,7 @@ public class DAOTiendas implements ITiendas {
     }
     String REGISTRAR_TIENDA = "INSERT INTO proyectofinaldaw.tiendas (`CIF`, `UsuarioMail`, `Nombre`) \n"
             + "	VALUES (?, ?, ?)";
+    String PROPIETARIO_TIENDA = "SELECT * FROM TIENDAS WHERE USUARIOMAIL = ?";
 
     @Override
     public void RegistrarTienda(Tiendas tienda, Usuarios usuario) {
@@ -81,8 +86,39 @@ public class DAOTiendas implements ITiendas {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private Tiendas obtenerFilaTiendas(Tiendas tienda) {
-        return null;
+    @Override
+    public List<Tiendas> tiendasPropietario(Usuarios usuario) {
+        Usuarios propietario = new Usuarios();
+        List<Tiendas> listaTiendas = new ArrayList<>();
+
+        try {
+            Object[] values = {
+                usuario.getMail()
+            };
+
+            Connection connection = daoFactory.getConnection();
+            PreparedStatement pstmt = prepareStatement(connection, PROPIETARIO_TIENDA, values);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                obtenerFilasTiendas(rs);
+
+                listaTiendas.add(obtenerFilasTiendas(rs));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOTiendas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listaTiendas;
     }
 
+    private Tiendas obtenerFilasTiendas(ResultSet rs) throws SQLException {
+        Tiendas filaTienda = new Tiendas();
+
+        filaTienda.setCif(rs.getString(("CIF")));
+        filaTienda.setNombre(rs.getString("NOMBRE"));
+
+        return filaTienda;
+    }
 }

@@ -1,5 +1,6 @@
 package org.mig.java.Interfaces;
 
+import java.util.List;
 import org.mig.java.Entities.Productos;
 import org.mig.java.Entities.Tiendas;
 import org.mig.java.Entities.Usuarios;
@@ -19,5 +20,7 @@ public interface ITiendas {
     public void ModificarTienda(Tiendas tienda);
     
     public Productos MostrarCatalogoProductosTienda(Tiendas tienda);
+    
+    public  List<Tiendas> tiendasPropietario(Usuarios usuario);
     
 }
